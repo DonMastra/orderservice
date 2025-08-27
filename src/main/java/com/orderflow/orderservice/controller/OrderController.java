@@ -4,7 +4,6 @@ import com.orderflow.orderservice.domain.Order;
 import com.orderflow.orderservice.model.OrderRequest;
 import com.orderflow.orderservice.model.OrderResponse;
 import com.orderflow.orderservice.service.OrderService;
-import lombok.Builder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +31,7 @@ public class OrderController {
         Order savedOrder = orderService.createOrder(order);
 
         OrderResponse response = new OrderResponse(
-                savedOrder.getId(), savedOrder.getCustomerName(), savedOrder.getProduct(),
+                savedOrder.getProductId(), savedOrder.getCustomerName(), savedOrder.getProduct(),
                 savedOrder.getQuantity(), savedOrder.getStatus(), savedOrder.getCreatedAt()
         );
 
@@ -48,7 +47,7 @@ public class OrderController {
         }
 
         return ResponseEntity.ok(new OrderResponse(
-                order.getId(), order.getCustomerName(), order.getProduct(),
+                order.getProductId(), order.getCustomerName(), order.getProduct(),
                 order.getQuantity(), order.getStatus(), order.getCreatedAt()
         ));
     }
@@ -57,7 +56,7 @@ public class OrderController {
     public List<OrderResponse> getAllOrders() {
         return orderService.getAllOrders().stream()
                 .map(order -> new OrderResponse(
-                        order.getId(), order.getCustomerName(), order.getProduct(),
+                        order.getProductId(), order.getCustomerName(), order.getProduct(),
                         order.getQuantity(), order.getStatus(), order.getCreatedAt()
                 )).toList();
     }

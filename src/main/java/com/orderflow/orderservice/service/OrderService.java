@@ -8,4 +8,6 @@ public interface OrderService {
     Order createOrder(Order order);
     Order getOrder(Long id);
     List<Order> getAllOrders();
+    void markAsConfirmed(Long orderId);
+    void markAsCancelled(Long orderId, String reason);
 }

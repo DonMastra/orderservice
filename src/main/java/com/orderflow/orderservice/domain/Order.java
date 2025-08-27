@@ -17,7 +17,8 @@ import java.time.LocalDateTime;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "product_id")
+    private Long productId;
     private String customerName;
     private String product;
     private int quantity;
@@ -33,4 +34,7 @@ public class Order {
         }
     }
 
+    public void setCancelReason(String reason) {
+        // implementar
+    }
 }
